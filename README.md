@@ -1,0 +1,1 @@
+A simple todo list web application built with vanilla JS and webpack.
