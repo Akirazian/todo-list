@@ -1,0 +1,6 @@
+[x] Create a todo
+ - Can edit it
+[x] Can toggle completion
+2) Create a Project of todos
+ - Can add a todo
+ - Can delete a todo
