@@ -1,12 +1,12 @@
 import capitalize from "../helpers/capitalize";
 
 class Todo {
-  constructor(title, description, dueDate, priority, completed) {
+  constructor(title, description, dueDate, priority) {
     this.title = capitalize(title);
     this.description = capitalize(description);
     this.dueDate = dueDate;
     this.priority = priority;
-    this.completed = completed;
+    this.completed = false;
   }
 
   toggle() {
