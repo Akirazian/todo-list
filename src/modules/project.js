@@ -8,14 +8,18 @@ class Project {
     this.todoList = [];
   }
 
+  editTitle(newTitle) {
+    this.title = newTitle;
+  }
+
   add(title, description, dueDate, priority) {
     this.todoList.push(new Todo(title, description, dueDate, priority));
-    displayTodos(this.todoList);  
+    displayTodos(this);  
   }
 
   remove(position) {
     this.todoList.splice(position, 1);
-    displayTodos(this.todoList);
+    displayTodos(this);
   }
 }
 
