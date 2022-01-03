@@ -12,12 +12,12 @@ class Project {
     this.title = newTitle;
   }
 
-  add(title, description, dueDate, priority) {
+  addTodo(title, description, dueDate, priority) {
     this.todoList.push(new Todo(title, description, dueDate, priority));
     displayTodos(this);  
   }
 
-  remove(position) {
+  removeTodo(position) {
     this.todoList.splice(position, 1);
     displayTodos(this);
   }
