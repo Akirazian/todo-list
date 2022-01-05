@@ -6,11 +6,23 @@ function displayProjects(projectList) {
 
   let projectListLength = projectList.length;
   for (let i = 0; i < projectListLength; i++) {
+    let projectContainer = makeElement("div", null, ["project-container"]);
     let project = makeElement("button", null, ["project-list-item"], projectList[i].title);
     project.addEventListener("click", () => {
       displayTodos(projectList[i])
     });
-    projectListContainer.appendChild(project);
+
+    let deleteProjectButton = makeElement("button", null, ["project-delete-button"], "X");
+    deleteProjectButton.addEventListener("click", () => {
+      let currentProject = document.querySelector(".project-title");
+      if (currentProject.id === projectList[i].title) {
+        clearTodos();
+      }
+      projectList.removeProject(i);
+    })
+
+    projectContainer.append(project, deleteProjectButton)
+    projectListContainer.appendChild(projectContainer);
   }
 }
 
@@ -44,7 +56,10 @@ function displayTodos(project) {
   todoListContainer.append(heading, todoListUl, newTodoButton);
 }
 
-
+function clearTodos() {
+  const todoListContainer = document.getElementById("todo-list-container");
+  todoListContainer.innerText = "";
+}
 
 export {
   displayProjects,

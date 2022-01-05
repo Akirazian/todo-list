@@ -1,22 +1,9 @@
-import Project from "./modules/project";
-import { displayProjects } from "./modules/display"
+import projectList from "./modules/projectList";
 import "./style.css"
 
-let projectList = [];
+projectList.addProject("New Project");
 
-projectList.add = (title) => {
-  projectList.push(new Project(title))
-  displayProjects(projectList)
-}
-
-projectList.remove = (position) => {
-  projectList.splice(position, 1)
-  displayProjects(projectList)
-}
-
-projectList.add("New Project");
-
-projectList.add("Second Project");
+projectList.addProject("Second Project");
 
 projectList[0].addTodo("New Todo", "Testing this Todo", "2/05/2022", "low");
 
