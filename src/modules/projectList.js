@@ -8,7 +8,7 @@ projectList.addProject = (title) => {
   displayProjects(projectList)
 }
 
-projectList.removeProject = (position) => {
+projectList.deleteProject = (position) => {
   projectList.splice(position, 1)
   displayProjects(projectList)
 }

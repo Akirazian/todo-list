@@ -1,6 +1,12 @@
 import projectList from "./modules/projectList";
 import "./style.css"
 
+const addProjectButton = document.getElementById("add-project-button");
+addProjectButton.addEventListener("click", () => {
+  let projectName = prompt("Project Name?");
+  projectList.addProject(projectName);
+});
+
 projectList.addProject("New Project");
 
 projectList.addProject("Second Project");

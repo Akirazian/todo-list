@@ -18,7 +18,7 @@ function displayProjects(projectList) {
       if (currentProject.id === projectList[i].title) {
         clearTodos();
       }
-      projectList.removeProject(i);
+      projectList.deleteProject(i);
     })
 
     projectContainer.append(project, deleteProjectButton)
@@ -34,12 +34,18 @@ function displayTodos(project) {
 
   let todoList = project.todoList;
   const todoListUl = makeElement("ul", "todo-list", ["todo-list"]);
-  todoListUl.innerText = "";
 
   let todoListLength = todoList.length;
   for (let i = 0; i < todoListLength; i++) {
     let todoLi = makeElement("li");
     todoLi.innerText = `${todoList[i].title} | Due: ${todoList[i].dueDate}`;
+    
+    let todoDeleteButton = makeElement("button", null, ["todo-delete-button"], "X");
+    todoDeleteButton.addEventListener("click", () => {
+      project.deleteTodo(i);
+    });
+    
+    todoLi.appendChild(todoDeleteButton);
     todoListUl.appendChild(todoLi);
   }
 

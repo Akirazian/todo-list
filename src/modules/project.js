@@ -17,7 +17,7 @@ class Project {
     displayTodos(this);  
   }
 
-  removeTodo(position) {
+  deleteTodo(position) {
     this.todoList.splice(position, 1);
     displayTodos(this);
   }
