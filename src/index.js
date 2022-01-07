@@ -7,6 +7,8 @@ addProjectButton.addEventListener("click", () => {
   projectList.addProject(projectName);
 });
 
+//Test Projects below
+
 projectList.addProject("New Project");
 
 projectList.addProject("Second Project");

@@ -38,14 +38,21 @@ function displayTodos(project) {
   let todoListLength = todoList.length;
   for (let i = 0; i < todoListLength; i++) {
     let todoLi = makeElement("li");
-    todoLi.innerText = `${todoList[i].title} | Due: ${todoList[i].dueDate}`;
+    let completedStatus = todoList[i].completed ? "[X]" : "[ ]";
+    todoLi.innerText = `${completedStatus} | ${todoList[i].title} | Due: ${todoList[i].dueDate}`;
     
+    let todoToggleButton = makeElement("button", null, ["todo-toggle-button"], "Toggle");
+    todoToggleButton.addEventListener("click", () => {
+      todoList[i].toggle();
+      displayTodos(project);
+    })
+
     let todoDeleteButton = makeElement("button", null, ["todo-delete-button"], "X");
     todoDeleteButton.addEventListener("click", () => {
       project.deleteTodo(i);
     });
     
-    todoLi.appendChild(todoDeleteButton);
+    todoLi.append(todoToggleButton, todoDeleteButton);
     todoListUl.appendChild(todoLi);
   }
 
