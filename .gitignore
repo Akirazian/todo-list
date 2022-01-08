@@ -1,3 +1,5 @@
 todoTodo.txt
 node_modules
 main.js.map
+.eslintrc.json
+.vscode

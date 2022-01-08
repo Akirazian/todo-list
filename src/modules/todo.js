@@ -1,4 +1,4 @@
-import capitalize from "../helpers/capitalize";
+import capitalize from '../helpers/capitalize';
 
 class Todo {
   constructor(title, description, dueDate, priority) {
@@ -10,6 +10,7 @@ class Todo {
   }
 
   toggle() {
+    // eslint-disable-next-line no-unused-expressions
     this.completed === false ? this.completed = true : this.completed = false;
   }
 
@@ -19,5 +20,3 @@ class Todo {
 }
 
 export default Todo;
-
-

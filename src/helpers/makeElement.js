@@ -5,6 +5,6 @@ const makeElement = (type, id, classes, content) => {
   if (content) element.innerText = content;
 
   return element;
-}
+};
 
 export default makeElement;
