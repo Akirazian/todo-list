@@ -15,8 +15,10 @@ function displayProjects(projectList) {
     let deleteProjectButton = makeElement("button", null, ["project-delete-button"], "X");
     deleteProjectButton.addEventListener("click", () => {
       let currentProject = document.querySelector(".project-title");
-      if (currentProject.id === projectList[i].title) {
-        clearTodos();
+      if (currentProject !== null) {
+        if (currentProject.id === projectList[i].title) {
+          clearTodos();
+        }
       }
       projectList.deleteProject(i);
     })

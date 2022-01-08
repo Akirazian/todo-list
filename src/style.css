@@ -1,4 +1,54 @@
+body {
+  width: 100vw;
+  height: auto;
+  margin: 0px;
+}
+
+header {
+  background-color: rgb(41, 41, 41);
+  color: whitesmoke;
+  display: flex;
+  font-size: 20px;
+  justify-content: flex-start;
+  padding: 15px;
+}
+
+#header-title {
+  margin-left: 20px;
+}
+
+main {
+  display: flex;
+  height: calc(100vh - 130.59px);
+}
+
+.project-sidebar {
+  display: flex;
+  padding: 20px 40px;
+  flex-direction: column;
+  background-color: gray;
+}
+
 .project-list-container {
   display: flex;
   flex-direction: column;
+}
+
+.todo-list-container {
+  margin: 20px;
+  padding-left: 20px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: rgb(41, 41, 41);
+  font-size: 20px;
+  color: whitesmoke;
+  padding: 15px;
 }
