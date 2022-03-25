@@ -11,6 +11,8 @@ function displayTodos(project) {
   todoListContainer.innerText = '';
 
   const heading = makeElement('h2', project.title, ['project-title'], project.title);
+  heading.contentEditable = true;
+  heading.addEventListener('focusout', () => project.editTitle(heading.innerText));
 
   const { todoList } = project;
   const todoListUl = makeElement('ul', 'todo-list', ['todo-list']);

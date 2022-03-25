@@ -1,6 +1,8 @@
-import capitalize from "../helpers/capitalize";
-import Todo from "./todo";
-import { displayTodos } from "./display";
+import capitalize from '../helpers/capitalize';
+import Todo from './todo';
+import { displayTodos } from './display';
+import { displayProjects } from './display';
+import projectList from './projectList';
 
 class Project {
   constructor(title) {
@@ -8,13 +10,14 @@ class Project {
     this.todoList = [];
   }
 
-  editTitle(newTitle) {
+  editTitle(newTitle) { 
     this.title = newTitle;
+    displayProjects(projectList);
   }
 
   addTodo(title, description, dueDate, priority) {
     this.todoList.push(new Todo(title, description, dueDate, priority));
-    displayTodos(this);  
+    displayTodos(this);
   }
 
   deleteTodo(position) {

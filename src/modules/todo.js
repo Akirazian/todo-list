@@ -10,7 +10,6 @@ class Todo {
   }
 
   toggle() {
-    // eslint-disable-next-line no-unused-expressions
     this.completed === false ? this.completed = true : this.completed = false;
   }
 

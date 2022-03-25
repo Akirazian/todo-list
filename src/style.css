@@ -11,10 +11,11 @@ header {
   font-size: 20px;
   justify-content: flex-start;
   padding: 15px;
+  width: 100%
 }
 
 #header-title {
-  margin-left: 20px;
+  margin-left: 70px;
 }
 
 main {
@@ -34,9 +35,15 @@ main {
   flex-direction: column;
 }
 
+.project-title {
+  max-width: calc(100% - 20px);
+  max-height: 54px;
+}
+
 .todo-list-container {
   margin: 20px;
   padding-left: 20px;
+  width: 60%;
 }
 
 footer {
