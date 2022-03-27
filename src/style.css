@@ -28,6 +28,7 @@ main {
   padding: 20px 40px;
   flex-direction: column;
   background-color: gray;
+  width: 15%;
 }
 
 .project-list-container {
@@ -36,8 +37,19 @@ main {
 }
 
 .project-title {
-  max-width: calc(100% - 20px);
-  max-height: 54px;
+  width: 30%;
+  margin: 19px;
+}
+
+.project-title-input {
+  font-size: 1.5em;
+  font-weight: bold;
+  max-height: 27px;
+  font-family: 'Times New Roman', Times, serif;
+  margin: 19px;
+  padding: 0px;
+  border: none;
+  display: block;
 }
 
 .todo-list-container {

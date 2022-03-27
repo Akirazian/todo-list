@@ -1,4 +1,3 @@
-/* eslint-disable no-plusplus */
 import makeElement from '../helpers/makeElement';
 
 function clearTodos() {
@@ -11,8 +10,19 @@ function displayTodos(project) {
   todoListContainer.innerText = '';
 
   const heading = makeElement('h2', project.title, ['project-title'], project.title);
-  heading.contentEditable = true;
-  heading.addEventListener('focusout', () => project.editTitle(heading.innerText));
+  heading.addEventListener('click', () => {
+    const projectTitleInput = makeElement('input', 'project-title', ['project-title-input']);
+    projectTitleInput.value = project.title;
+    projectTitleInput.maxLength = 25;
+    projectTitleInput.addEventListener('blur', () => project.editTitle(projectTitleInput.value));
+    projectTitleInput.addEventListener('keydown', (e) => { 
+      if (e.key === 'Enter') {
+        project.editTitle(projectTitleInput.value);
+      }
+    });
+
+    heading.replaceWith(projectTitleInput);
+  });
 
   const { todoList } = project;
   const todoListUl = makeElement('ul', 'todo-list', ['todo-list']);
