@@ -37,7 +37,6 @@ main {
 }
 
 .project-title {
-  width: 30%;
   margin: 19px;
 }
 
@@ -55,7 +54,41 @@ main {
 .todo-list-container {
   margin: 20px;
   padding-left: 20px;
-  width: 60%;
+  width: 40%;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.completed {
+  background-image: url(https://toppng.com/public/uploads/thumbnail/check-mark-white-11562946459qzfx8x4bgx.png);
+  background-color: lightgreen;
+}
+
+.not-completed, .completed {
+  height: 1rem;
+  width: 1rem;
+  border: 1px solid black;
+  border-radius: 3px;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+}
+
+.todo-title {
+  margin-left: 15px;
+}
+
+.todo-end-container {
+  display: flex;
+  margin-left: auto;
+  align-items: center;
+}
+.todo-date {
+  margin-right: 15px;
 }
 
 footer {
