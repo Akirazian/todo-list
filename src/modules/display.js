@@ -10,7 +10,7 @@ function displayTodos(project) {
   todoListContainer.innerText = '';
 
   const heading = makeElement('h2', project.title, ['project-title'], project.title);
-  heading.addEventListener('click', () => {
+  heading.addEventListener('click', () => { //To seamlessly edit titles in-line, replace the title with an identical text-input
     const projectTitleInput = makeElement('input', 'project-title', ['project-title-input']);
     projectTitleInput.value = project.title;
     projectTitleInput.maxLength = 25;
@@ -20,7 +20,6 @@ function displayTodos(project) {
         project.editTitle(projectTitleInput.value);
       }
     });
-
     heading.replaceWith(projectTitleInput);
   });
 
@@ -29,22 +28,26 @@ function displayTodos(project) {
 
   const todoListLength = todoList.length;
   for (let i = 0; i < todoListLength; i++) {
-    const todoLi = makeElement('li');
-    const completedStatus = todoList[i].completed ? '[X]' : '[ ]';
-    todoLi.innerText = `${completedStatus} | ${todoList[i].title} | Due: ${todoList[i].dueDate}`;
+    const todoLi = makeElement('li', `current-todo-${i}`, ['todo-li']);
+    const completedStatus = todoList[i].completed ? 'completed' : 'not-completed';
+    const checkBox = makeElement('div', '', [completedStatus], todoList[i].completed ? 'X' : '');
+    const todoTitle = makeElement('div', '', ['todo-title'], todoList[i].title);
 
-    const todoToggleButton = makeElement('button', null, ['todo-toggle-button'], 'Toggle');
-    todoToggleButton.addEventListener('click', () => {
-      todoList[i].toggle();
-      displayTodos(project);
-    });
-
+    const todoEndContainer = makeElement('div', '', ['todo-end-container']);
+    const todoDate = makeElement('div', '', ['todo-date'], todoList[i].dueDate);
     const todoDeleteButton = makeElement('button', null, ['todo-delete-button'], 'X');
     todoDeleteButton.addEventListener('click', () => {
       project.deleteTodo(i);
     });
+    todoEndContainer.append(todoDate, todoDeleteButton);
 
-    todoLi.append(todoToggleButton, todoDeleteButton);
+
+    checkBox.addEventListener('click', () => {
+      todoList[i].toggle();
+      displayTodos(project);
+    });
+
+    todoLi.append(checkBox, todoTitle, todoEndContainer);
     todoListUl.appendChild(todoLi);
   }
 
