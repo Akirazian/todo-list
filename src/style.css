@@ -65,7 +65,9 @@ li {
 
 .completed {
   background-image: url(https://toppng.com/public/uploads/thumbnail/check-mark-white-11562946459qzfx8x4bgx.png);
-  background-color: lightgreen;
+  background-color: rgb(31, 94, 231);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .not-completed, .completed {
@@ -89,6 +91,27 @@ li {
 }
 .todo-date {
   margin-right: 15px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightblue;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.input-container input, .input-container textarea {
+  border: none;
+  font: inherit;
+}
+
+input:focus-visible, textarea:focus-visible {
+  outline: none;
+}
+
+textarea {
+  resize: none;
 }
 
 footer {
