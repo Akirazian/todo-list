@@ -1,10 +1,12 @@
 import capitalize from '../helpers/capitalize';
+import format from 'date-fns/format';
+import parseISO from 'date-fns/parseISO';
 
 class Todo {
   constructor(title, description, dueDate, priority) {
     this.title = capitalize(title);
     this.description = capitalize(description);
-    this.dueDate = dueDate;
+    this.dueDate = format(parseISO(dueDate), 'MM/dd/yyyy');
     this.priority = priority;
     this.completed = false;
   }

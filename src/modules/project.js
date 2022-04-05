@@ -1,8 +1,6 @@
 import capitalize from '../helpers/capitalize';
 import Todo from './todo';
-import { displayTodos } from './display';
-import { displayProjects } from './display';
-import projectList from './projectList';
+import { displayTodos, displayProjects } from './display';
 
 class Project {
   constructor(title) {
@@ -12,7 +10,7 @@ class Project {
 
   editTitle(newTitle) { 
     this.title = newTitle;
-    displayProjects(projectList);
+    displayProjects();
   }
 
   addTodo(title, description, dueDate, priority) {

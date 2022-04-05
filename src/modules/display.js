@@ -1,4 +1,5 @@
 import makeElement from '../helpers/makeElement';
+import projectList from './projectList';
 
 function clearTodos() {
   const todoListContainer = document.getElementById('todo-list-container');
@@ -95,7 +96,7 @@ function displayTodos(project) {
   todoListContainer.append(heading, todoListUl, newTodoButton);
 }
 
-function displayProjects(projectList) {
+function displayProjects() {
   const projectListContainer = document.getElementById('project-list-container');
   projectListContainer.innerText = '';
 
