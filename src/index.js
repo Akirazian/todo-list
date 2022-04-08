@@ -13,8 +13,8 @@ projectList.addProject('New Project');
 
 projectList.addProject('Second Project');
 
-projectList[0].addTodo('New Todo', 'Testing this Todo', '2021-04-05', 'low');
+projectList[0].addTodo('New to do', 'Testing this Todo', '2021-04-05', 'low');
 
-projectList[0].addTodo('Second Todo', 'Testing a second todo', '2021-04-05', 'medium');
+projectList[0].addTodo('Medium Priority To Do', 'Testing a second todo', '2021-04-05', 'medium');
 
-projectList[0].addTodo('Third Todo', 'A whole third todo', '2021-04-05', 'high');
+projectList[0].addTodo('Urgent To Do!', 'A whole third todo', '2021-04-05', 'high');
