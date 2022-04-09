@@ -2,6 +2,7 @@ body {
   width: 100vw;
   height: auto;
   margin: 0px;
+  --li-color: white;
 }
 
 header {
@@ -46,9 +47,13 @@ main {
   max-height: 27px;
   font-family: 'Times New Roman', Times, serif;
   margin: 19px;
-  padding: 0px;
+  padding: 5px;
   border: none;
   display: block;
+}
+
+.project-title-input:active {
+  border: 1px solid black;
 }
 
 .todo-list-container {
@@ -60,7 +65,16 @@ main {
 li {
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
+  padding: 10px;
+  background-color: var(--li-color);
+}
+
+li:hover {
+  filter: brightness(95%);
+}
+
+li:active {
+  filter: brightness(90%);
 }
 
 .completed {
@@ -81,7 +95,8 @@ li {
 }
 
 .todo-title {
-  margin-left: 15px;
+  margin-left: 18px;
+  cursor: pointer;
 }
 
 .todo-end-container {

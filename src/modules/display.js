@@ -21,7 +21,7 @@ function displayAddTodo(project) {
   let highPriority = makeElement('option', 'high-priority', ['priority'], 'High');
   priorityInput.append(lowPriority, mediumPriority, highPriority);
   const dateInput = makeElement('input', 'date-input', ['date-input']);
-  dateInput.type = 'date';
+  flatpickr(dateInput, {});
   inputContainer.append(titleInput, descriptionInput, priorityInput, dateInput);
 
   const addTodoButton = makeElement('button', 'new-todo-button', ['new-todo-button'], 'Add Todo');
@@ -110,6 +110,7 @@ function displayProjects() {
     const projectContainer = makeElement('div', null, ['project-container']);
     const project = makeElement('button', null, ['project-list-item'], projectList[i].title);
     project.addEventListener('click', () => {
+      projectList[i].todoList = projectList[i].todoList.filter(todo => todo.completed === false); //Remove any completed todos ONLY when changing projects
       displayTodos(projectList[i]);
     });
 
