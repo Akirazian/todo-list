@@ -7,7 +7,7 @@ class Todo {
     this.title = capitalize(title);
     this.description = capitalize(description);
     this.dueDate = format(parseISO(dueDate), 'MM/dd/yyyy');
-    this.priority = priority.toLowerCase();
+    this.priority = priority;
     this.completed = false;
   }
 

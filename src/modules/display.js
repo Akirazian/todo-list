@@ -1,5 +1,6 @@
 import makeElement from '../helpers/makeElement';
 import projectList from './projectList';
+import capitalize from '../helpers/capitalize';
 
 function clearTodos() {
   const todoListContainer = document.getElementById('todo-list-container');
@@ -21,19 +22,18 @@ function displayAddTodo(project) {
   let highPriority = makeElement('option', 'high-priority', ['priority'], 'High');
   priorityInput.append(lowPriority, mediumPriority, highPriority);
   const dateInput = makeElement('input', 'date-input', ['date-input']);
-  flatpickr(dateInput, {});
+  dateInput.type = 'date';
   inputContainer.append(titleInput, descriptionInput, priorityInput, dateInput);
-
-  const addTodoButton = makeElement('button', 'new-todo-button', ['new-todo-button'], 'Add Todo');
+  const addTodoButton = makeElement('button', 'new-todo-button', ['new-todo-button', 'add-todo-button'], 'Add Todo');
   addTodoButton.addEventListener('click', () => {
-    project.addTodo(titleInput.value, descriptionInput.value, dateInput.value, priorityInput.value);
+    project.addTodo(titleInput.value, descriptionInput.value, dateInput.value, priorityInput.value.toLowerCase());
   });
 
   const cancelButton = makeElement('button', 'cancel-button', ['cancel-button'], 'Cancel');
   cancelButton.addEventListener('click', () => {
     todoListUl.removeChild(container);
     const newTodoButton = makeElement('button', 'new-todo-button', ['new-todo-button'], 'Add Todo');
-    newTodoButton.addEventListener('click', () => {
+    newTodoButton.addEventListener('click', (e) => {
       todoListUl.removeChild(newTodoButton);
       displayAddTodo(project);
     });
@@ -45,6 +45,45 @@ function displayAddTodo(project) {
   const container = makeElement('div', 'add-todo-container', ['add-todo-container']);
   container.append(inputContainer, buttonContainer);
   todoListUl.append(container);
+}
+
+function displayEditTodo(todoLi, todo, project) {
+  const inputContainer = makeElement('div', 'input-container', ['input-container']);
+  const titleInput = makeElement('input', 'title-input', ['title-input']);
+  titleInput.value = todo.title;
+  titleInput.maxLength = '20'
+  const descriptionInput = makeElement('textarea', 'description-input', ['description-input'], todo.description);
+  const priorityInput = makeElement('select', 'priority-input', ['priority-input']);
+  let lowPriority = makeElement('option', 'low-priority', ['priority'], 'Low');
+  let mediumPriority = makeElement('option', 'medium-priority', ['priority'], 'Medium');
+  let highPriority = makeElement('option', 'high-priority', ['priority'], 'High');
+  priorityInput.append(lowPriority, mediumPriority, highPriority);
+  for(let i, j = 0; i = priorityInput.options[j]; j++) { //This for-loop makes sure the previously selected priority is the default when the Todo Edit is opened.
+    if(i.value === capitalize(todo.priority)) {
+        priorityInput.selectedIndex = j;
+        break;
+    }
+  }
+
+  const dateInput = makeElement('input', 'date-input', ['date-input']);
+  dateInput.type = 'date';
+  dateInput.value = todo.dueDate;
+  inputContainer.append(titleInput, descriptionInput, priorityInput, dateInput);
+  const editTodoButton = makeElement('button', 'edit-todo-button', ['new-todo-button', 'add-todo-button'], 'Edit Todo');
+  editTodoButton.addEventListener('click', () => {
+    todo.edit('title', titleInput.value);
+    todo.edit('description', descriptionInput.value);
+    todo.edit('priority', priorityInput.value.toLowerCase());
+    displayTodos(project);
+  });
+
+  const container = makeElement('div', 'add-todo-container', ['add-todo-container']);
+  const cancelButton = makeElement('button', 'cancel-button', ['cancel-button'], 'Cancel');
+  cancelButton.addEventListener('click', () => container.remove());
+  const buttonContainer = makeElement('div', 'button-container', ['button-container']);
+  buttonContainer.append(editTodoButton, cancelButton);
+  container.append(inputContainer, buttonContainer);
+  todoLi.after(container);
 }
 
 function displayTodos(project) {
@@ -70,7 +109,7 @@ function displayTodos(project) {
 
   const todoListLength = todoList.length;
   for (let i = 0; i < todoListLength; i++) {
-    const todoLi = makeElement('li', `current-todo-${i}`, ['todo-li']);
+    const todoLi = makeElement('li', `todo-${i}`, ['todo-li']);
     const completedStatus = todoList[i].completed ? 'completed' : 'not-completed';
     const checkBox = makeElement('div', '', [completedStatus, todoList[i].priority]);
     const todoTitle = makeElement('div', '', ['todo-title'], todoList[i].title);
@@ -82,12 +121,16 @@ function displayTodos(project) {
       project.deleteTodo(i);
     });
     todoEndContainer.append(todoDate, todoDeleteButton);
-
     checkBox.addEventListener('click', () => {
       todoList[i].toggle();
       displayTodos(project);
     });
+
     todoLi.append(checkBox, todoTitle, todoEndContainer);
+    todoLi.addEventListener('click', function handler() {
+    displayEditTodo(todoLi, todoList[i], project)
+      this.removeEventListener('click', handler);
+    });
     todoListUl.appendChild(todoLi);
   }
 
