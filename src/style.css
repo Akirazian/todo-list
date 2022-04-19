@@ -1,34 +1,33 @@
 body {
-  width: 100vw;
   height: auto;
   margin: 0px;
   --li-color: white;
+  --header-color: #17BEBB;
 }
 
 header {
-  background-color: rgb(41, 41, 41);
+  background-color: var(--header-color);
   color: whitesmoke;
   display: flex;
   font-size: 20px;
   justify-content: flex-start;
   padding: 15px;
-  width: 100%
 }
 
 #header-title {
-  margin-left: 70px;
+  margin-left: 90px;
 }
 
 main {
   display: flex;
-  height: calc(100vh - 130.59px);
+  height: auto;
 }
 
 .project-sidebar {
   display: flex;
   padding: 20px 40px;
   flex-direction: column;
-  background-color: gray;
+  background-color: #17bebb4d;
   width: 15%;
 }
 
@@ -49,6 +48,7 @@ main {
   margin: 19px;
   padding: 0px;
   border: none;
+  text-align: center;
   display: block;
 }
 
@@ -57,9 +57,20 @@ input:focus-visible.project-title-input {
 }
 
 .todo-list-container {
-  margin: 20px;
-  padding-left: 20px;
-  width: 600px;
+  display: flex;
+  flex-direction: column;
+  margin: 20px auto;
+  align-items: center;
+}
+
+.todo-list {
+  width: 700px;
+}
+
+@media only screen and (max-width: 768px) {
+  .todo-list {
+    width: 400px;
+  }
 }
 
 li {
@@ -160,9 +171,10 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  background-color: rgb(41, 41, 41);
+  background-color: var(--header-color);
   font-size: 20px;
   color: whitesmoke;
   padding: 15px;
+  width: 100%;
+  box-sizing: border-box;
 }
