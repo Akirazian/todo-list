@@ -20,7 +20,7 @@ header {
 
 main {
   display: flex;
-  height: auto;
+  height: calc(100vh - 183.59px);
 }
 
 .project-sidebar {
@@ -70,6 +70,16 @@ input:focus-visible.project-title-input {
 @media only screen and (max-width: 768px) {
   .todo-list {
     width: 400px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .todo-list {
+    width: 200px;
+  }
+
+  .todo-date {
+    display: none;
   }
 }
 

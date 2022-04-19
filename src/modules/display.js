@@ -64,7 +64,6 @@ function displayEditTodo(todoLi, todo, project) {
         break;
     }
   }
-
   const dateInput = makeElement('input', 'date-input', ['date-input']);
   dateInput.type = 'date';
   dateInput.value = todo.dueDate;
@@ -76,10 +75,9 @@ function displayEditTodo(todoLi, todo, project) {
     todo.edit('priority', priorityInput.value.toLowerCase());
     displayTodos(project);
   });
-
   const container = makeElement('div', 'add-todo-container', ['add-todo-container']);
   const cancelButton = makeElement('button', 'cancel-button', ['cancel-button'], 'Cancel');
-  cancelButton.addEventListener('click', () => container.remove());
+  cancelButton.addEventListener('click', () => displayTodos(project));
   const buttonContainer = makeElement('div', 'button-container', ['button-container']);
   buttonContainer.append(editTodoButton, cancelButton);
   container.append(inputContainer, buttonContainer);
