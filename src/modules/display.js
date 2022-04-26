@@ -1,6 +1,7 @@
 import makeElement from '../helpers/makeElement';
 import projectList from './projectList';
 import capitalize from '../helpers/capitalize';
+import { format, parseISO } from 'date-fns';
 
 function clearTodos() {
   const todoListContainer = document.getElementById('todo-list-container');
@@ -73,6 +74,7 @@ function displayEditTodo(todoLi, todo, project) {
     todo.edit('title', titleInput.value);
     todo.edit('description', descriptionInput.value);
     todo.edit('priority', priorityInput.value.toLowerCase());
+    if (dateInput.value !== '') todo.edit('dueDate', format(parseISO(dateInput.value), 'MM/dd/yyyy'));
     displayTodos(project);
   });
   const container = makeElement('div', 'add-todo-container', ['add-todo-container']);
@@ -126,7 +128,7 @@ function displayTodos(project) {
 
     todoLi.append(checkBox, todoTitle, todoEndContainer);
     todoLi.addEventListener('click', function handler() {
-    displayEditTodo(todoLi, todoList[i], project)
+      displayEditTodo(todoLi, todoList[i], project)
       this.removeEventListener('click', handler);
     });
     todoListUl.appendChild(todoLi);
