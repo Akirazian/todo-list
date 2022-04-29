@@ -102,6 +102,7 @@ function displayTodos(project) {
       }
     });
     heading.replaceWith(projectTitleInput);
+    projectTitleInput.focus();
   });
 
   const { todoList } = project;
@@ -117,7 +118,8 @@ function displayTodos(project) {
     const todoEndContainer = makeElement('div', '', ['todo-end-container']);
     const todoDate = makeElement('div', '', ['todo-date'], todoList[i].dueDate);
     const todoDeleteButton = makeElement('button', null, ['todo-delete-button'], 'X');
-    todoDeleteButton.addEventListener('click', () => {
+    todoDeleteButton.addEventListener('click', (e) => {
+      e.stopPropagation();
       project.deleteTodo(i);
     });
     todoEndContainer.append(todoDate, todoDeleteButton);

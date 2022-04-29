@@ -18,8 +18,8 @@ function localSave() {
 }
 
 function localDownload() {
-  if (localStorage.getObject("projectList") == null) return;
   let downloadedList = localStorage.getObject('projectList');
+  if (downloadedList === null || !downloadedList.length) return;
   for (let i = 0; i < downloadedList.length; i++) { //Add back each project & to-do individually as new Todo class objects to give them functions again after retrieval from localStoratge JSON
     projectList.push(new Project(downloadedList[i].title));
     for (let j = 0; j < downloadedList[i].todoList.length; j++) {

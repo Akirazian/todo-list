@@ -38,6 +38,7 @@ main {
 
 .project-title {
   margin: 19px;
+  cursor: pointer;
 }
 
 .project-title-input {
