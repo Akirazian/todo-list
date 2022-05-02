@@ -1,11 +1,14 @@
 import projectList from './modules/projectList';
-import getTodayTodos from './modules/todoSorter';
 import { displayTodos } from './modules/display';
 import './style.css';
 import { localDownload } from './modules/storageHandler';
+import getTodos from './modules/todoSorter';
+import parse from 'date-fns/parse';
 
 const todayTodosButton = document.getElementById('today-todos-button');
-todayTodosButton.addEventListener('click', () => displayTodos(getTodayTodos()));
+todayTodosButton.addEventListener('click', () => displayTodos(getTodos.today()));
+const weekTodosButton = document.getElementById('week-todos-button');
+weekTodosButton.addEventListener('click', () => displayTodos(getTodos.week()));
 
 const addProjectButton = document.getElementById('add-project-button');
 addProjectButton.addEventListener('click', () => {
@@ -14,7 +17,8 @@ addProjectButton.addEventListener('click', () => {
 });
 
 localDownload();
-console.log(projectList);
+console.log(parse(projectList[0].todoList[0].dueDate, 'MM/dd/yyyy', new Date()));
+
 if (!projectList.length) {
   projectList.addProject('New Project');
   projectList.addProject('Second Project');

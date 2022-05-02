@@ -90,7 +90,7 @@ function displayTodos(project) {
   const todoListContainer = document.getElementById('todo-list-container');
   todoListContainer.innerText = '';
 
-  const heading = makeElement('h2', project.title, ['project-title'], project.title);
+  const heading = makeElement('h2', project.title, ['project-title'], project.title); //Project title builder
   heading.addEventListener('click', () => { //To seamlessly edit titles in-line, replace the title with an identical text-input
     const projectTitleInput = makeElement('input', 'project-title', ['project-title-input']);
     projectTitleInput.value = project.title;
@@ -107,14 +107,12 @@ function displayTodos(project) {
 
   const { todoList } = project;
   const todoListUl = makeElement('ul', 'todo-list-ul', ['todo-list']);
-
   const todoListLength = todoList.length;
-  for (let i = 0; i < todoListLength; i++) {
-    const todoLi = makeElement('li', `todo-${i}`, ['todo-li']);
+  for (let i = 0; i < todoListLength; i++) { //To-Do list builder
     const completedStatus = todoList[i].completed ? 'completed' : 'not-completed';
-    const checkBox = makeElement('div', '', [completedStatus, todoList[i].priority]);
+    const todoLi = makeElement('li', `todo-${i}`, ['todo-li', completedStatus]);
+    const checkBox = makeElement('div', '', ['checkbox', completedStatus, todoList[i].priority]);
     const todoTitle = makeElement('div', '', ['todo-title'], todoList[i].title);
-    
     const todoEndContainer = makeElement('div', '', ['todo-end-container']);
     const todoDate = makeElement('div', '', ['todo-date'], todoList[i].dueDate);
     const todoDeleteButton = makeElement('button', null, ['todo-delete-button'], 'X');
@@ -127,7 +125,6 @@ function displayTodos(project) {
       todoList[i].toggle();
       displayTodos(project);
     });
-
     todoLi.append(checkBox, todoTitle, todoEndContainer);
     todoLi.addEventListener('click', function handler() {
       displayEditTodo(todoLi, todoList[i], project)

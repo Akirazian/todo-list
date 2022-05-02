@@ -1,22 +1,42 @@
 import projectList from "./projectList";
-import format from 'date-fns/format';
 import Project from "./project";
+import parse from 'date-fns/parse';
+import format from "date-fns/format";
+import isSameWeek from "date-fns/isSameWeek";
 
-function getTodayTodos() {
-  let todayDate = format(new Date(), 'MM/dd/yyyy')
-  let todayTodos = []
 
-  projectList.forEach(project => {
-    project.todoList.forEach(todo => {
-      if (todo.dueDate === todayDate) {
-        todayTodos.push(todo);
-      }
+const getTodos = (() => {
+  const today = () => {
+    let todayDate = format(new Date(), 'MM/dd/yyyy');
+    let todayTodosProject = new Project('Today');
+    projectList.forEach(project => {
+      project.todoList.forEach(todo => {
+        if (todo.dueDate === todayDate) {
+          todayTodosProject.todoList.push(todo);
+        }
+      });
     });
-  });
-  
-  let todayTodosProject = new Project('Today');
-  todayTodosProject.todoList = todayTodos;
-  return todayTodosProject;
-}
+    return todayTodosProject;
+  }
 
-export default getTodayTodos;
+  const week = () => {
+    let thisWeek = new Date();
+    let weekTodosProject = new Project('This Week');
+    projectList.forEach(project => {
+      project.todoList.forEach(todo => {
+        if (isSameWeek(thisWeek, parse(todo.dueDate, 'MM/dd/yyyy', new Date()))) {
+          weekTodosProject.todoList.push(todo);
+        }
+      });
+    });
+    return weekTodosProject;
+  }
+
+  return {
+    today,
+    week
+  }
+})();
+
+
+export default getTodos;
