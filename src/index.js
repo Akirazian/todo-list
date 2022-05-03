@@ -9,6 +9,8 @@ const todayTodosButton = document.getElementById('today-todos-button');
 todayTodosButton.addEventListener('click', () => displayTodos(getTodos.today()));
 const weekTodosButton = document.getElementById('week-todos-button');
 weekTodosButton.addEventListener('click', () => displayTodos(getTodos.week()));
+const overDueButton = document.getElementById('overdue-todos-button');
+overDueButton.addEventListener('click', () => displayTodos(getTodos.overdue()));
 
 const addProjectButton = document.getElementById('add-project-button');
 addProjectButton.addEventListener('click', () => {
@@ -17,7 +19,6 @@ addProjectButton.addEventListener('click', () => {
 });
 
 localDownload();
-console.log(parse(projectList[0].todoList[0].dueDate, 'MM/dd/yyyy', new Date()));
 
 if (!projectList.length) {
   projectList.addProject('New Project');

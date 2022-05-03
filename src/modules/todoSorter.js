@@ -3,6 +3,7 @@ import Project from "./project";
 import parse from 'date-fns/parse';
 import format from "date-fns/format";
 import isSameWeek from "date-fns/isSameWeek";
+import { isPast } from "date-fns";
 
 
 const getTodos = (() => {
@@ -32,9 +33,22 @@ const getTodos = (() => {
     return weekTodosProject;
   }
 
+  const overdue = () => {
+    let overdueProject = new Project('Overdue');
+    projectList.forEach(project => {
+      project.todoList.forEach(todo => {
+        if (isPast(parse(todo.dueDate, 'MM/dd/yyyy', new Date()))) {
+          overdueProject.todoList.push(todo);
+        }
+      });
+    });
+    return overdueProject;
+  }
+
   return {
     today,
-    week
+    week,
+    overdue
   }
 })();
 
