@@ -2,7 +2,8 @@ body {
   height: auto;
   margin: 0px;
   --li-color: white;
-  --header-color: #17BEBB;
+  --header-color: #333333;
+  --sidebar-color: #dbdbdb;
 }
 
 header {
@@ -12,6 +13,7 @@ header {
   font-size: 20px;
   justify-content: flex-start;
   padding: 15px;
+  font-family: 'Comfortaa', cursive;
 }
 
 #header-title {
@@ -21,19 +23,42 @@ header {
 main {
   display: flex;
   height: calc(100vh - 183.59px);
+  font-family: 'Roboto', sans-serif !important;
 }
 
 .project-sidebar {
   display: flex;
   padding: 20px 40px;
   flex-direction: column;
-  background-color: #17bebb4d;
-  width: 15%;
+  background-color: var(--sidebar-color);
+  align-items: center;
 }
 
 .project-list-container {
   display: flex;
   flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.project-list-item {
+  padding: 10px;
+  background-color: var(--sidebar-color);
+  border: none;
+  font-size: 1.1rem;
+  text-align: left;
+  font-weight: 200;
+  cursor: pointer;
+  width: 250px;
+  margin-bottom: 5px;
+  border-radius: 7px;
+}
+
+.project-list-item:hover, .project-container:hover {
+  filter: brightness(90%);
+}
+
+.project-list-item:active, .project-container:active {
+  filter: brightness(85%);
 }
 
 .project-title {
@@ -187,6 +212,7 @@ footer {
   align-items: center;
   justify-content: center;
   background-color: var(--header-color);
+  font-family: 'Comfortaa', cursive;
   font-size: 20px;
   color: whitesmoke;
   padding: 15px;
