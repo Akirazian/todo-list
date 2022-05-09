@@ -70,7 +70,6 @@ main {
   font-size: 1.5em;
   font-weight: bold;
   max-height: 27px;
-  font-family: 'Times New Roman', Times, serif;
   margin: 19px;
   padding: 0px;
   border: none;
@@ -109,10 +108,11 @@ input:focus-visible.project-title-input {
   }
 }
 
-li {
+.todo-li {
   display: flex;
   align-items: center;
   padding: 10px;
+  border-radius: 7px;
   background-color: var(--li-color);
 }
 

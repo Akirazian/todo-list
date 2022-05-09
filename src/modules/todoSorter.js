@@ -8,7 +8,7 @@ import { isPast } from "date-fns";
 
 const getTodos = (() => {
   const today = () => {
-    let todayDate = format(new Date(), 'MM/dd/yyyy');
+    let todayDate = format(new Date(), 'yyyy-MM-dd');
     let todayTodosProject = new Project('Today');
     projectList.forEach(project => {
       project.todoList.forEach(todo => {
@@ -25,7 +25,7 @@ const getTodos = (() => {
     let weekTodosProject = new Project('This Week');
     projectList.forEach(project => {
       project.todoList.forEach(todo => {
-        if (isSameWeek(thisWeek, parse(todo.dueDate, 'MM/dd/yyyy', new Date()))) {
+        if (isSameWeek(thisWeek, parse(todo.dueDate, 'yyyy-MM-dd', new Date()))) {
           weekTodosProject.todoList.push(todo);
         }
       });
@@ -37,7 +37,7 @@ const getTodos = (() => {
     let overdueProject = new Project('Overdue');
     projectList.forEach(project => {
       project.todoList.forEach(todo => {
-        if (isPast(parse(todo.dueDate, 'MM/dd/yyyy', new Date()))) {
+        if (isPast(parse(todo.dueDate, 'yyyy-MM-dd', new Date()))) {
           overdueProject.todoList.push(todo);
         }
       });

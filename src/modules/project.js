@@ -2,8 +2,6 @@ import capitalize from '../helpers/capitalize';
 import Todo from './todo';
 import { displayTodos, displayProjects } from './display';
 import { localSave } from './storageHandler';
-import format from 'date-fns/format';
-import parseISO from 'date-fns/parseISO';
 
 class Project {
   constructor(title) {
@@ -18,7 +16,7 @@ class Project {
   }
 
   addTodo(title, description, dueDate, priority) {
-    this.todoList.push(new Todo(title, description, format(parseISO(dueDate), 'MM/dd/yyyy'), priority));
+    this.todoList.push(new Todo(title, description, dueDate, priority));
     displayTodos(this);
     localSave();
   }
