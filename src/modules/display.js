@@ -10,7 +10,6 @@ function clearTodos() {
 
 function displayAddTodo(project) {
   const todoListUl = document.getElementById('todo-list-ul')
-
   const inputContainer = makeElement('div', 'input-container', ['input-container']);
   const titleInput = makeElement('input', 'title-input', ['title-input']);
   titleInput.placeholder = 'Title'
@@ -26,7 +25,7 @@ function displayAddTodo(project) {
   dateInput.type = 'date';
   dateInput.value = format(new Date(), 'yyyy-MM-dd');
   inputContainer.append(titleInput, descriptionInput, priorityInput, dateInput);
-  const addTodoButton = makeElement('button', 'new-todo-button', ['new-todo-button', 'add-todo-button'], 'Add Todo');
+  const addTodoButton = makeElement('button', 'new-todo-button', ['new-todo-button', 'nice-button', 'add-todo-button'], 'Add Todo');
   addTodoButton.addEventListener('click', () => {
     if (!titleInput.value || !dateInput.value) return;
     project.addTodo(titleInput.value, descriptionInput.value, dateInput.value, priorityInput.value.toLowerCase());
@@ -34,10 +33,10 @@ function displayAddTodo(project) {
   inputContainer.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') project.addTodo(titleInput.value, descriptionInput.value, dateInput.value, priorityInput.value.toLowerCase());
   });
-  const cancelButton = makeElement('button', 'cancel-button', ['cancel-button'], 'Cancel');
+  const cancelButton = makeElement('button', 'cancel-button', ['nice-button'], 'Cancel');
   cancelButton.addEventListener('click', () => {
     todoListUl.removeChild(container);
-    const newTodoButton = makeElement('button', 'new-todo-button', ['new-todo-button'], 'New Todo');
+    const newTodoButton = makeElement('button', 'new-todo-button', ['new-todo-button', 'nice-button'], 'New Todo');
     newTodoButton.addEventListener('click', () => {
       todoListUl.removeChild(newTodoButton);
       displayAddTodo(project);
@@ -73,9 +72,9 @@ function displayEditTodo(todoLi, todo, project) {
   dateInput.type = 'date';
   // dateInput.value = todo.dueDate;
   inputContainer.append(titleInput, descriptionInput, priorityInput, dateInput);
-  const editTodoButton = makeElement('button', 'edit-todo-button', ['new-todo-button', 'add-todo-button'], 'Edit Todo');
+  const editTodoButton = makeElement('button', 'edit-todo-button', ['new-todo-button', 'nice-button', 'add-todo-button'], 'Edit Todo');
   const applyEdit = () => {
-    if(!titleInput.value || !dateInput.value) return;
+    if(!titleInput.value) return;
     todo.edit('title', titleInput.value);
     todo.edit('description', descriptionInput.value);
     todo.edit('priority', priorityInput.value.toLowerCase());
@@ -87,7 +86,7 @@ function displayEditTodo(todoLi, todo, project) {
     if (e.key === 'Enter') applyEdit();
   });
   const container = makeElement('div', 'add-todo-container', ['add-todo-container']);
-  const cancelButton = makeElement('button', 'cancel-button', ['cancel-button'], 'Cancel');
+  const cancelButton = makeElement('button', 'cancel-button', ['nice-button'], 'Cancel');
   cancelButton.addEventListener('click', () => displayTodos(project));
   const buttonContainer = makeElement('div', 'button-container', ['button-container']);
   buttonContainer.append(editTodoButton, cancelButton);
@@ -117,12 +116,12 @@ function displayTodos(project) {
   const todoListLength = todoList.length;
   for (let i = 0; i < todoListLength; i++) { //To-Do list builder
     const completedStatus = todoList[i].completed ? 'completed' : 'not-completed';
-    const todoLi = makeElement('li', `todo-${i}`, ['todo-li', completedStatus]);
+    const todoLi = makeElement('li', `todo-${i}`, ['todo-li']);
     const checkBox = makeElement('div', '', ['checkbox', completedStatus, todoList[i].priority]);
-    const todoTitle = makeElement('div', '', ['todo-title'], todoList[i].title);
+    const todoTitle = makeElement('div', '', ['todo-title', completedStatus], todoList[i].title);
     const todoEndContainer = makeElement('div', '', ['todo-end-container']);
-    const todoDate = makeElement('div', '', ['todo-date'], format(parseISO(todoList[i].dueDate), 'MM/dd/yyyy'));
-    const todoDeleteButton = makeElement('button', null, ['todo-delete-button'], 'X');
+    const todoDate = makeElement('div', '', ['todo-date', completedStatus], format(parseISO(todoList[i].dueDate), 'MM/dd/yyyy'));
+    const todoDeleteButton = makeElement('span', null, ['invisible', 'material-symbols-outlined'], 'delete');
     todoDeleteButton.addEventListener('click', (e) => {
       e.stopPropagation();
       project.deleteTodo(i);
@@ -137,10 +136,12 @@ function displayTodos(project) {
       displayEditTodo(todoLi, todoList[i], project)
       this.removeEventListener('click', handler);
     });
+    todoLi.addEventListener('mouseenter', () => todoDeleteButton.classList.toggle('invisible'));
+    todoLi.addEventListener('mouseleave', () => todoDeleteButton.classList.toggle('invisible'));
     todoListUl.appendChild(todoLi);
   }
 
-  const newTodoButton = makeElement('button', 'new-todo-button', ['new-todo-button'], 'New Todo');
+  const newTodoButton = makeElement('button', 'new-todo-button', ['new-todo-button', 'nice-button'], 'New Todo');
   newTodoButton.addEventListener('click', () => {
     todoListUl.removeChild(newTodoButton);
     displayAddTodo(project);
@@ -154,10 +155,10 @@ function displayAddProject() {
   const projectSidebar = document.getElementById('project-sidebar');
   const container = makeElement('div', 'add-project-container', ['add-project-container']);
   const projectInput = makeElement('input', 'project-input', ['project-input']);
-  const addProjectButton = makeElement('button', 'add-project-button', ['add-project-button'], 'Add Project');
+  const addProjectButton = makeElement('button', 'add-project-button', ['add-project-button', 'nice-button'], 'Add Project');
   const reset = () => {
     projectSidebar.removeChild(container);
-    const newProjectButton = makeElement('button', 'new-project-button', ['new-project-button'], 'New Project');
+    const newProjectButton = makeElement('button', 'new-project-button', ['new-project-button', 'nice-button'], 'New Project');
     newProjectButton.addEventListener('click', () => {
       projectSidebar.removeChild(newProjectButton);
       displayAddProject();
@@ -169,7 +170,7 @@ function displayAddProject() {
     projectList.addProject(projectInput.value);
     reset();
   });
-  const cancelButton = makeElement('button', 'cancel-project-button', ['cancel-button', 'cancel-project-button'], 'Cancel');
+  const cancelButton = makeElement('button', 'cancel-project-button', ['nice-button'], 'Cancel');
   cancelButton.addEventListener('click', reset);
   const buttonContainer = makeElement('div', 'button-container', ['button-container']);
   buttonContainer.append(addProjectButton, cancelButton);
@@ -190,7 +191,7 @@ function displayProjects() {
       displayTodos(projectList[i]);
     });
 
-    const deleteProjectButton = makeElement('button', null, ['project-delete-button'], 'X');
+    const deleteProjectButton = makeElement('span', null, ['invisible', 'material-symbols-outlined'], 'delete');
     deleteProjectButton.addEventListener('click', () => {
       const currentProject = document.querySelector('.project-title');
       if (currentProject !== null) {
@@ -200,7 +201,8 @@ function displayProjects() {
       }
       projectList.deleteProject(i);
     });
-
+    projectContainer.addEventListener('mouseenter', () => deleteProjectButton.classList.toggle('invisible'));
+    projectContainer.addEventListener('mouseleave', () => deleteProjectButton.classList.toggle('invisible'));
     projectContainer.append(project, deleteProjectButton);
     projectListContainer.appendChild(projectContainer);
   }

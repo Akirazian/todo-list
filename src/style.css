@@ -5,6 +5,62 @@ body {
   --header-color: #333333;
   --sidebar-color: #dbdbdb;
 }
+/* Google Material Symbol Font */
+.material-symbols-outlined {
+  cursor: pointer;
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48;
+}
+
+/* Button by Paper CSS */
+
+/* CSS */
+.nice-button {
+  align-self: center;
+  background-color: #fff;
+  background-image: none;
+  background-position: 0 90%;
+  background-repeat: repeat no-repeat;
+  background-size: 4px 3px;
+  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+  box-sizing: border-box;
+  color: #41403e;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.85rem;
+  line-height: 23px;
+  outline: none;
+  padding: 10px;
+  text-decoration: none;
+  transition: all 235ms ease-in-out;
+  border-bottom-left-radius: 15px 255px;
+  border-bottom-right-radius: 225px 15px;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.nice-button:hover {
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+  transform: translate3d(0, 2px, 0);
+}
+
+.nice-button:focus {
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+}
+
+.invisible {
+  visibility: hidden;
+}
 
 header {
   background-color: var(--header-color);
@@ -40,24 +96,35 @@ main {
   margin-bottom: 15px;
 }
 
+.project-container {
+  display: flex;
+  align-items: center;
+  background-color: var(--sidebar-color);
+  border-radius: 7px;
+  width: 250px;
+  justify-content: space-between;
+}
+
+.project-container>span {
+  margin-right: 5px;
+}
+
 .project-list-item {
-  padding: 10px;
+  padding: 13px;
   background-color: var(--sidebar-color);
   border: none;
   font-size: 1.1rem;
   text-align: left;
   font-weight: 200;
   cursor: pointer;
-  width: 250px;
-  margin-bottom: 5px;
   border-radius: 7px;
 }
 
-.project-list-item:hover, .project-container:hover {
+.project-container:hover {
   filter: brightness(90%);
 }
 
-.project-list-item:active, .project-container:active {
+.project-container:active {
   filter: brightness(85%);
 }
 
@@ -69,12 +136,13 @@ main {
 .project-title-input {
   font-size: 1.5em;
   font-weight: bold;
-  max-height: 27px;
+  max-height: 28px;
   margin: 19px;
   padding: 0px;
   border: none;
   text-align: center;
   display: block;
+  font-family: 'Roboto' !important;
 }
 
 input:focus-visible.project-title-input {
@@ -124,13 +192,13 @@ li:active {
   filter: brightness(90%);
 }
 
-.completed {
+.checkbox.completed {
   background-image: url(https://toppng.com/public/uploads/thumbnail/check-mark-white-11562946459qzfx8x4bgx.png);
   background-size: contain;
   background-repeat: no-repeat;
 }
 
-.todo-li.completed {
+.completed {
   text-decoration: line-through;
 }
 
