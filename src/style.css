@@ -229,7 +229,7 @@ li:active {
 .input-container {
   display: flex;
   flex-direction: column;
-  border: 1px solid lightblue;
+  border: 1px solid #767676;
   border-radius: 5px;
   padding: 5px;
   margin-bottom: 10px;

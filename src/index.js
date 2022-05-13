@@ -23,11 +23,11 @@ localDownload();
 if (!projectList.length) { //Default projects
   projectList.addProject('New Project');
   projectList.addProject('Second Project');
-  projectList[0].addTodo('New To-Do', 'Testing this Todo', '2022-05-21', 'low');
-  projectList[0].addTodo('Medium Priority To-Do', 'Testing a second todo', '2022-05-05', 'medium');
-  projectList[0].addTodo('Urgent To-Do!', 'A whole third todo', '2022-05-21', 'high');
+  projectList[0].addTodo('New To-Do', 'More info can be found here!', '2022-05-21', 'low');
+  projectList[0].addTodo('Medium Priority To-Do', '', '2022-05-05', 'low');
+  projectList[0].addTodo('Urgent To-Do!', 'A whole third todo!', '2022-05-21', 'high');
   projectList[1].addTodo('Second Project Todo', 'Testing this out', '2022-05-21', 'low');
-  projectList[1].addTodo('Buy Meatball Food', 'She likes chicken!', '2022-05-19', 'medium');
-  projectList[1].addTodo('Buy Brianna Knife', 'She likes japanese knives!', '2022-05-21', 'low');
+  projectList[1].addTodo('Buy some groceries', 'The kids love chicken!', '2022-05-19', 'medium');
+  projectList[1].addTodo('Buy catfood', 'She likes tuna!', '2022-05-21', 'low');
   displayTodos(projectList[0]);
 }
