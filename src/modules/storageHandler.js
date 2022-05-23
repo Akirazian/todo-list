@@ -4,21 +4,21 @@ import projectList from './projectList'
 import Todo from './todo';
 
 //Set up some new methods to make dealing with localStorage easier:
-Storage.prototype.setObject = function(key, value) {
-  this.setItem(key, JSON.stringify(value));
+function setObject(key, value) {
+  localStorage.setItem(key, JSON.stringify(value));
 }
 
-Storage.prototype.getObject = function(key) {
-  var value = this.getItem(key);
+function getObject(key) {
+  var value = localStorage.getItem(key);
   return value && JSON.parse(value);
 }
 
 function localSave() {
-  localStorage.setObject("projectList", projectList);
+  setObject("projectList", projectList);
 }
 
 function localDownload() {
-  let downloadedList = localStorage.getObject('projectList');
+  let downloadedList = getObject('projectList');
   if (downloadedList === null || !downloadedList.length) return;
   for (let i = 0; i < downloadedList.length; i++) { //JSON can't store functions, so each project/to-do is added again as a new objects to return their lost methods.
     projectList.push(new Project(downloadedList[i].title));

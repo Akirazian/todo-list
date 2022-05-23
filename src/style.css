@@ -1,5 +1,11 @@
+html {
+  height: 100%;
+}
+
 body {
-  height: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   margin: 0px;
   --li-color: white;
   --header-color: #333333;
@@ -16,8 +22,6 @@ body {
 }
 
 /* Button by Paper CSS */
-
-/* CSS */
 .nice-button {
   align-self: center;
   background-color: #fff;
@@ -66,19 +70,24 @@ header {
   background-color: var(--header-color);
   color: whitesmoke;
   display: flex;
+  align-items: center;
   font-size: 20px;
   justify-content: flex-start;
   padding: 15px;
   font-family: 'Comfortaa', cursive;
 }
 
+.hamburger-menu {
+  visibility: hidden;
+}
+
 #header-title {
-  margin-left: 90px;
+  margin: 20px 50px;
 }
 
 main {
   display: flex;
-  height: calc(100vh - 183.59px);
+  flex: 1;
   font-family: 'Roboto', sans-serif !important;
 }
 
@@ -88,6 +97,12 @@ main {
   flex-direction: column;
   background-color: var(--sidebar-color);
   align-items: center;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 10px;
 }
 
 .project-list-container {
@@ -129,7 +144,7 @@ main {
 }
 
 .project-title {
-  margin: 19px;
+  margin: 10px;
   cursor: pointer;
 }
 
@@ -160,15 +175,43 @@ input:focus-visible.project-title-input {
   width: 700px;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1080px) {
   .todo-list {
-    width: 400px;
+    width: 500px;
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
+  .project-sidebar {
+    display: none;
+  }
+
+  .hamburger-menu {
+    visibility: visible;
+    margin-left: 30px;
+    cursor: pointer;
+  }
+
+  main {
+    flex-direction: column;
+  }
+
+  footer {
+    position: static !important;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .hamburger-menu {
+    margin: auto;
+  }
+
+  #header-title {
+    margin: 20px auto;
+  }
+
   .todo-list {
-    width: 200px;
+    width: 280px;
   }
 
   .todo-date {
@@ -286,4 +329,9 @@ footer {
   padding: 15px;
   width: 100%;
   box-sizing: border-box;
+  height: 40px;
+}
+
+.project-sidebar.active {
+  display: flex;
 }
